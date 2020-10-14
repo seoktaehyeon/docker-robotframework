@@ -11,8 +11,8 @@ RUN apk add --no-cache --virtual .build-deps \
     pip install -r requirements.txt && \
     cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     apk del .build-deps && \
-    echo '/workspace' > /usr/local/lib/python3.7/site-packages/workspace.pth && \
     [[ -f /usr/local/bin/pybot ]] || ln -s /usr/local/bin/robot /usr/local/bin/pybot
 
 ADD 微软雅黑.ttf /usr/share/fonts
 RUN fc-cache -fv
+ENV PYTHONPATH=/workspace
