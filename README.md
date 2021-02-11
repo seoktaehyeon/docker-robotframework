@@ -1,4 +1,4 @@
-#### Base Image is python3.9-alpine3.10
+#### Base Image is `python:3.8-alpine3.10`
 
 #### APK List
 

@@ -17,22 +17,22 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-        submodules: true
+          submodules: true
       - name: Build the Docker image
         run: |
-            echo -e "\nCheck branchs\n"
-            git_ref_type=$(echo "${{ github.ref }}" | awk -F '/' '{print $2}')
-            if [[ "${git_ref_type}" == "heads" ]]; then
-                git_ref_name=$(echo "${{ github.ref }}" | awk -F '/' '{print $NF}')
-                echo -e "\nTriggered by ${git_ref_type} ${git_ref_name}\n"
+          echo -e "\nCheck branchs\n"
+          git_ref_type=$(echo "${{ github.ref }}" | awk -F '/' '{print $2}')
+          if [[ "${git_ref_type}" == "heads" ]]; then
+              git_ref_name=$(echo "${{ github.ref }}" | awk -F '/' '{print $NF}')
+              echo -e "\nTriggered by ${git_ref_type} ${git_ref_name}\n"
 
-                echo -e "\nBuild and push image ${IMG_REPO}/${IMG_NAME}:${git_ref_name}\n"
-                docker build . --file Dockerfile --tag ${IMG_REPO}/${IMG_NAME}:${git_ref_name}
-                echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
-                docker push ${IMG_REPO}/${IMG_NAME}:${git_ref_name}
+              echo -e "\nBuild and push image ${IMG_REPO}/${IMG_NAME}:${git_ref_name}\n"
+              docker build . --file Dockerfile --tag ${IMG_REPO}/${IMG_NAME}:${git_ref_name}
+              echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
+              docker push ${IMG_REPO}/${IMG_NAME}:${git_ref_name}
 
-                echo -e "\nRetag and push image ${ALI_REGISTRY}/${IMG_REPO}/${IMG_NAME}:${git_ref_name}\n"
-                docker tag ${IMG_REPO}/${IMG_NAME}:${git_ref_name} ${ALI_REGISTRY}/${IMG_REPO}/${IMG_NAME}:${git_ref_name}
-                echo "${{ secrets.ALI_DC_PASSWORD }}" | docker login -u ${{ secrets.ALI_DC_USER }} --password-stdin ${ALI_REGISTRY}
-                docker push ${ALI_REGISTRY}/${IMG_REPO}/${IMG_NAME}:${git_ref_name}
-            fi
+              echo -e "\nRetag and push image ${ALI_REGISTRY}/${IMG_REPO}/${IMG_NAME}:${git_ref_name}\n"
+              docker tag ${IMG_REPO}/${IMG_NAME}:${git_ref_name} ${ALI_REGISTRY}/${IMG_REPO}/${IMG_NAME}:${git_ref_name}
+              echo "${{ secrets.ALI_DC_PASSWORD }}" | docker login -u ${{ secrets.ALI_DC_USER }} --password-stdin ${ALI_REGISTRY}
+              docker push ${ALI_REGISTRY}/${IMG_REPO}/${IMG_NAME}:${git_ref_name}
+          fi
