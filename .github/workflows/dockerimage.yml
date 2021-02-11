@@ -8,18 +8,18 @@ env:
   IMG_REPO: bxwill
   IMG_NAME: robotframework
 
-  jobs:
+jobs:
 
-    build:
+  build:
 
-      runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-      steps:
-        - uses: actions/checkout@v2
-          with:
-            submodules: true
-        - name: Build the Docker image
-          run: |
+    steps:
+      - uses: actions/checkout@v2
+        with:
+        submodules: true
+      - name: Build the Docker image
+        run: |
             echo -e "\nCheck branchs\n"
             git_ref_type=$(echo "${{ github.ref }}" | awk -F '/' '{print $2}')
             if [[ "${git_ref_type}" == "heads" ]]; then
