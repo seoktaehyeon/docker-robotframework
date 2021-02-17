@@ -1,16 +1,16 @@
 *** Settings ***
 Documentation                   Example for RobotFramework + Python + Firefox
-Library                                     Selenium2Library
+Library                         Selenium2Library
 
 
 *** Variables ***
-${ACCESS_URL}                   http://bx.baoxian-sz.com
+${ACCESS_URL}                   https://office.baoxian-sz.com
 
 
 *** Test Cases ***
 Access Web Site
     Open Browser To Access Page   ${ACCESS_URL}
-    Title Should Contain        Truth & Insurance Workshop
+    Title Should Contain        Truth & Insurance Office
     [Teardown]      Close Browser
 
 
