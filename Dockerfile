@@ -2,8 +2,8 @@ FROM ubuntu:18.04 AS download
 WORKDIR /workspace
 RUN apt update \
     && apt install -y curl wget \
-    && gecko_url=$(curl -s https://api.github.com/repos/mozilla/geckodriver/releases | grep assets_url | head -1 | awk -F "\"" '{print $4}') \
-    && gecko_download=$(curl -s $gecko_url | grep browser_download_url | grep linux64 | awk -F "\"" '{print $4}') \
+    && gecko_url=$(curl -s https://api.github.com/repos/mozilla/geckodriver/releases | grep assets_url | head -1 | awk -F '"' '{print $4}') \
+    && gecko_download=$(curl -s $gecko_url | grep browser_download_url | grep 'linux64.tar.gz"' | awk -F '"' '{print $4}') \
     && wget $gecko_download -O geckodriver.tar.gz \
     && tar zxvf geckodriver.tar.gz
 
