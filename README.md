@@ -5,7 +5,7 @@
 
 #### Dockerfile for py-chrome-dcs
 ```Dockerfile
-FROM python:3.7-alpine3.10
+FROM python:3.8-alpine3.10
 MAINTAINER v.stone@163.com
 WORKDIR /workspace
 ENV PYTHONPATH=/workspace
