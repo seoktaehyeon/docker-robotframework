@@ -14,7 +14,7 @@ RUN ln -s /opt/allure/bin/allure /usr/bin/allure \
     && apk add --no-cache --virtual .build-deps \
         gcc libc-dev libffi-dev make openssl-dev tzdata musl-dev python-dev postgresql-dev \
     && pip install -r requirements.txt \
-    && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+    && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && apk del .build-deps
 
 ADD 微软雅黑.ttf /usr/share/fonts
