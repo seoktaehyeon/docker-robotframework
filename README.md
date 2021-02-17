@@ -5,6 +5,7 @@
 - bash
 - chromium
 - chromium-chromedriver
+- allure
 
 #### Python Packages
 
