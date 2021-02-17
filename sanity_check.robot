@@ -10,7 +10,7 @@ ${ACCESS_URL}                   https://office.baoxian-sz.com
 *** Test Cases ***
 Access Web Site
     Open Browser To Access Page   ${ACCESS_URL}
-    Title Should Contain        Truth & Insurance Workshop
+    Title Should Contain        Truth & Insurance Office
     [Teardown]      Close Browser
 
 
