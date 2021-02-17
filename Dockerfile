@@ -8,14 +8,14 @@ ENV PYTHONPATH=/workspace
 
 COPY --from=allure /opt/allure-${VERSION} /opt/allure
 COPY requirements.txt ./
-RUN ln -s /opt/allure/bin/allure /usr/bin/allure \
-    && allure --version \
-    && apk add --no-cache bash chromium chromium-chromedriver openjdk8-jre \
+RUN apk add --no-cache bash chromium chromium-chromedriver openjdk8-jre \
     && apk add --no-cache --virtual .build-deps \
         gcc libc-dev libffi-dev make openssl-dev tzdata musl-dev python-dev postgresql-dev \
     && pip install -r requirements.txt \
     && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-    && apk del .build-deps
+    && apk del .build-deps \
+    && ln -s /opt/allure/bin/allure /usr/bin/allure \
+    && allure --version
 
 ADD 微软雅黑.ttf /usr/share/fonts
 RUN fc-cache -fv
