@@ -18,6 +18,7 @@ RUN apt update \
     && apt install -y python3.7 python3-pip firefox \
     && ln -s /usr/bin/python3 /usr/bin/python \
     && ln -s /usr/bin/pip3 /usr/bin/pip \
+    && python -m pip install --upgrade pip \
     && pip install -r requirements.txt \
     && [[ -f /usr/local/bin/pybot ]] || ln -s /usr/local/bin/robot /usr/local/bin/pybot
 ADD 微软雅黑.ttf /usr/share/fonts
