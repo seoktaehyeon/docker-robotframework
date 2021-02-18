@@ -6,7 +6,7 @@ LABEL maintainer=v.stone@163.com
 WORKDIR /workspace
 ENV PYTHONPATH=/workspace
 
-COPY --from=allure /opt/allure-${ALLURE_VER} /opt/allure
+COPY --from=allure /opt/allure /opt/allure
 COPY requirements.txt ./
 RUN apk add --no-cache bash chromium chromium-chromedriver openjdk8-jre \
     && apk add --no-cache --virtual .build-deps \
